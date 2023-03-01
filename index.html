@@ -15,49 +15,103 @@
     href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;700&display=swap"
     rel="stylesheet"
   />
-
+  <link rel="stylesheet" href="./assets/css/reset.css" />
   <link rel="stylesheet" href="./assets/css/style.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <header class="p-3 mb-3 text-center ">
-        <h1>Weather Dashboard</h1>
-        <!-- <h2>
-          Current Time &amp; Date: <br />
-          <span id="time-display"></span>
-        </h2> -->
+    <header class="p-3 mb-3 text-center">
+        <h1 class="h2">Weather Dashboard</h1>
     </header>
-    <div class = "container">
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <h4>Search for a City:</h3>
-                <!-- <div class="container-fluid"> -->
-                    <form>
-                        <div class = "input-group">
-                            <input class="form-control " type="search" placeholder="Search" aria-label="Search" name="search">
-                            <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit"><svg class="bi bi-search" xmlns="http://www.w3.org/2000/svg" width="24" color="white" fill="currentColor"  viewBox="0 0 16 16">
-                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                            </svg></button>
-                            </div>
-                    </form>
-                <!-- </div> -->
+        <div class="container-fluid row">
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <h2 class="h5">Search for a City:</h2>
+                        <form>
+                            <div class = "input-group">
+                                <input class="form-control " type="search" placeholder="Search" aria-label="Search" name="search">
+                                <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit"><svg class="bi bi-search" xmlns="http://www.w3.org/2000/svg" width="24" color="white" fill="currentColor"  viewBox="0 0 16 16">
+                                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                </svg></button>
+                                </div>
+                        </form>
+                </div>
+                <ul class="list-unstyled components">
+                    <li>
+                        <a href="#">Previous City #1</a>
+                    </li>
+                    <li>
+                        <a href="#">Previous City #2</a>
+                    </li>
+                    <li>
+                        <a href="#">Previous City #2</a>
+                    </li>
+                    <li>
+                        <a href="#">Previous City #2</a>
+                    </li>
+                    <li>
+                        <a href="#">Previous City #2</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="col">
+                <!-- mdb-docs-layout -->
+                <div id="current-city" class="col-md-10" >
+                    <p class = "m-2">Atlanta (3/1/2023)</p>
+                    <ul>
+                        <li>Temp: 76.62 <script>"\u2109"</script>F</li>
+                        <li>Wind: 8.43 MPH</li>
+                        <li>Humidity: 44%</li>
+                    </ul>
+                </div>
+                <div id="forecast-box" class="col-md-10">
+                    <div class="m-2 row">
+                        <p class="mt-2">5-Day Forecast:</p>
+                        <div id="forecast-1" class = "col-md-2 forecast p-2 m-2 small">
+                            <p class = "small m-2">3/2/2023</p>
+                            <ul class="small">
+                                <li>Temp: 76.62 <script>"\u2109"</script>F</li>
+                                <li>Wind: 8.43 MPH</li>
+                                <li>Humidity: 44%</li>
+                            </ul>
+                        </div>
+                        <div class = "col-md-2 forecast p-2 m-2 small">
+                            <p class = "small m-2">3/3/2023</p>
+                            <ul class="small">
+                                <li>Temp: 76.62 <script>"\u2109"</script>F</li>
+                                <li>Wind: 8.43 MPH</li>
+                                <li>Humidity: 44%</li>
+                            </ul>
+                        </div>
+                        <div class = "col-md-2 forecast p-2 m-2 small">
+                            <p class = "small m-2">3/4/2023</p>
+                            <ul class="small">
+                                <li>Temp: 76.62 <script>"\u2109"</script>F</li>
+                                <li>Wind: 8.43 MPH</li>
+                                <li>Humidity: 44%</li>
+                            </ul>
+                        </div>
+                        <div class = "col-md-2 forecast p-2 m-2 small">
+                            <p class = "small m-2">3/5/2023</p>
+                            <ul class="small">
+                                <li>Temp: 76.62 <script>"\u2109"</script>F</li>
+                                <li>Wind: 8.43 MPH</li>
+                                <li>Humidity: 44%</li>
+                            </ul>
+                        </div>
+                        <div class = "col-md-2 forecast p-2 m-2 small">
+                            <p class = "small m-2">3/6/2023</p>
+                            <ul class="small">
+                                <li>Temp: 76.62 <script>"\u2109"</script>F</li>
+                                <li>Wind: 8.43 MPH</li>
+                                <li>Humidity: 44%</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <ul class="list-unstyled components">
-                <!-- <p>Dummy Heading</p> -->
-                <li>
-                    <a href="#">Portfolio</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
-            </ul>
-
-
-        </nav>
-
-    </div>
+        </div>
 </body>
 </html>
