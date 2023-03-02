@@ -65,7 +65,7 @@ a:focus {
     border: 1px solid lightgray;
     box-shadow: 2px 2px 2px lightgray;
     text-shadow: 1px 1px 1px gray;
-    background-color: slategray;
+    background-color: #7386D5;
     min-width: 130px;
 }
 
@@ -100,10 +100,11 @@ a:focus {
 }
 
 #current-city {
-    color: black;
+    color: white;
     border: 1px solid lightgray;
     box-shadow: 2px 2px 2px lightgray;
     text-shadow: 1px 1px 1px gray;
+    background-color: #7386D5;
 }
 
 #forecast-elem {
