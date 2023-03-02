@@ -28,9 +28,10 @@
             <nav id="sidebar">
                 <div class="sidebar-header">
                     <h2 class="h5">Search for a City:</h2>
-                        <form>
+                        <form id="search-form">
                             <div class = "input-group">
-                                <input class="form-control " type="search" placeholder="Search" aria-label="Search" name="search">
+                                <!-- type="search" aria-label="Search" name="search" -->
+                                <input id="search-input" class="form-control"  placeholder="Search" >
                                 <div class="input-group-btn">
                                 <button class="btn btn-default" type="submit"><svg class="bi bi-search" xmlns="http://www.w3.org/2000/svg" width="24" color="white" fill="currentColor"  viewBox="0 0 16 16">
                                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -61,57 +62,29 @@
                 <div id="current-city" class="col-md-10" >
                     <p class = "m-2">Atlanta (3/1/2023)</p>
                     <ul>
-                        <li>Temp: 76.62 <script>"\u2109"</script>F</li>
+                        <li>Temp: 76.62 F</li>
                         <li>Wind: 8.43 MPH</li>
                         <li>Humidity: 44%</li>
                     </ul>
                 </div>
-                <div id="forecast-box" class="col-md-10">
-                    <div class="m-2 row">
+                <div  class="col-md-10">
+                    <div id="forecast-box" class="m-2 row">
                         <p class="mt-2">5-Day Forecast:</p>
-                        <div id="forecast-1" class = "col-md-2 forecast p-2 m-2 small">
-                            <p class = "small m-2">3/2/2023</p>
+                        
+                        <div class="col-md-2 forecast p-2 m-2 small">
+                            <p class="small m-2">3/2/2023</p>
                             <ul class="small">
-                                <li>Temp: 76.62 <script>"\u2109"</script>F</li>
+                                <li>Temp: 76.62 F</li>
                                 <li>Wind: 8.43 MPH</li>
                                 <li>Humidity: 44%</li>
                             </ul>
                         </div>
-                        <div class = "col-md-2 forecast p-2 m-2 small">
-                            <p class = "small m-2">3/3/2023</p>
-                            <ul class="small">
-                                <li>Temp: 76.62 <script>"\u2109"</script>F</li>
-                                <li>Wind: 8.43 MPH</li>
-                                <li>Humidity: 44%</li>
-                            </ul>
-                        </div>
-                        <div class = "col-md-2 forecast p-2 m-2 small">
-                            <p class = "small m-2">3/4/2023</p>
-                            <ul class="small">
-                                <li>Temp: 76.62 <script>"\u2109"</script>F</li>
-                                <li>Wind: 8.43 MPH</li>
-                                <li>Humidity: 44%</li>
-                            </ul>
-                        </div>
-                        <div class = "col-md-2 forecast p-2 m-2 small">
-                            <p class = "small m-2">3/5/2023</p>
-                            <ul class="small">
-                                <li>Temp: 76.62 <script>"\u2109"</script>F</li>
-                                <li>Wind: 8.43 MPH</li>
-                                <li>Humidity: 44%</li>
-                            </ul>
-                        </div>
-                        <div class = "col-md-2 forecast p-2 m-2 small">
-                            <p class = "small m-2">3/6/2023</p>
-                            <ul class="small">
-                                <li>Temp: 76.62 <script>"\u2109"</script>F</li>
-                                <li>Wind: 8.43 MPH</li>
-                                <li>Humidity: 44%</li>
-                            </ul>
-                        </div>
+
+                        
                     </div>
                 </div>
             </div>
         </div>
+        <script src="./assets/js/script.js"></script>
 </body>
 </html>
