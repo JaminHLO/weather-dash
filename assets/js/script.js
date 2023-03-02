@@ -114,7 +114,7 @@ function dispCurrentWeather () {
 
 function getWeatherAPI (weatherType) {
     console.log("queryType is:", weatherType);
-    var queryURL = `http://api.openweathermap.org/data/2.5/${weatherType}?q=${cityName}&units=imperial&appid=${APIKey}`;
+    var queryURL = `https://api.openweathermap.org/data/2.5/${weatherType}?q=${cityName}&units=imperial&appid=${APIKey}`;
     fetch(queryURL)
     .then(function(response) {
         if (!response.ok) {
