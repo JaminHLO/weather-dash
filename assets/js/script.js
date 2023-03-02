@@ -2,6 +2,7 @@ var APIKey = "060b3b44ee04f00deac7c9f2a67bbd9d";
 var cityName = "Atlanta";
 
 var searchElem = document.querySelector('#search-form');
+var historyElem = document.querySelector('#prev-search');
 var weatherObj;
 var forecastObj; 
 var weatherStorage;
@@ -136,13 +137,12 @@ function getWeatherAPI (weatherType) {
             console.log ("new city is:", weatherObj.name);
             for (var i=0; i < weatherStorage.length; i++) {
                 console.log ("search hist item:", weatherStorage[i].current.name);
+                
                 if (weatherStorage[i].current.name === weatherObj.name) {
                     weatherStorage = weatherStorage.splice(i, 1);
                 }
-
-                
             }
-            
+    
             //add fetched weather objects to front of storage array
             console.log("current:", weatherObj);
             console.log("forecast:", forecastObj);
@@ -151,6 +151,8 @@ function getWeatherAPI (weatherType) {
             console.log("weatherStorage:", weatherStorage);
             //put new array in localStorage
             localStorage.setItem("weather-dash", JSON.stringify(weatherStorage));
+            //refresh search history
+            init();
         }
         
     })
@@ -182,12 +184,12 @@ function init () {
     weatherStorage = localStorage.getItem('weather-dash');
     //if we have stored content, load it
     if (weatherStorage) {
-        console.log("weatherStorage is:", weatherStorage);
+        // console.log("weatherStorage is:", weatherStorage);
         weatherStorage = JSON.parse(weatherStorage);
         //display previous searches in sidebar ul
         var searchListElem = document.getElementById("prev-search");
         searchListElem.textContent = "";
-        for (var i=0; i < weatherStorage.length; i++) {
+        for (var i=1; i < weatherStorage.length; i++) {
             console.log("weatherStorage[i].current:", weatherStorage[i].current);
             var newSearchLi = document.createElement('li');
             var newSearchLink = document.createElement('a');
@@ -211,5 +213,25 @@ function init () {
 }
 
 searchElem.addEventListener('submit', handleSearchSubmit);
+historyElem.addEventListener('click', function (event) {
+    var element = event.target;
+    console.log("id is:", element.id);
+    var elemIndex = parseInt((element.id).slice(7));
+    console.log("id in number form is:", elemIndex);
+   if (weatherStorage) {
+        let tmpName = weatherStorage[elemIndex].current.name;
+        console.log("user clicked:", tmpName);
+        //remove selected city from search history
+        weatherStorage.splice(elemIndex, 1);
+        //load weather for selected city
+        cityName = tmpName;
+        //get current weather
+        getWeatherAPI("weather")
+        //get forecast
+        getWeatherAPI("forecast");
+    }
+        
+
+})
 
 init();
