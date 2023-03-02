@@ -132,6 +132,17 @@ function getWeatherAPI (weatherType) {
         } else {
             forecastObj = data;
             dispForecast();
+            //make sure this search doesn't appear twice in history
+            console.log ("new city is:", weatherObj.name);
+            for (var i=0; i < weatherStorage.length; i++) {
+                console.log ("search hist item:", weatherStorage[i].current.name);
+                if (weatherStorage[i].current.name === weatherObj.name) {
+                    weatherStorage = weatherStorage.splice(i, 1);
+                }
+
+                
+            }
+            
             //add fetched weather objects to front of storage array
             console.log("current:", weatherObj);
             console.log("forecast:", forecastObj);
@@ -158,7 +169,7 @@ function handleSearchSubmit (event){
         return;
     }
     console.log("user submitted:", searchVal);
-    cityName = searchVal;
+    cityName = searchVal.trim();
     //get current weather
     getWeatherAPI("weather")
     //get forecast
@@ -181,7 +192,6 @@ function init () {
             var newSearchLi = document.createElement('li');
             var newSearchLink = document.createElement('a');
             newSearchLink.setAttribute("id", `search-${i}`);
-            // newSearchLink.classList.add("btn", "btn-default");
             newSearchLink.textContent = weatherStorage[i].current.name;
             newSearchLi.append(newSearchLink);
             searchListElem.append(newSearchLi);
