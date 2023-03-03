@@ -8,7 +8,6 @@ var forecastObj;
 var weatherStorage;
 
   function dispForecast () {
-    // console.log("in dispForecast, city is:", forecastObj.city.name);
 
     //access and clear current forecast element
     var forecastElem = document.getElementById("forecast-elem");
@@ -24,7 +23,6 @@ var weatherStorage;
     for (var i=0; i<forecastObj.list.length; i++) {
         var curListTime = forecastObj.list[i].dt_txt;
         curListTime = curListTime.split(' ')[1];
-        // console.log("current list time:", curListTime);
         if (curListTime === "09:00:00") {
             //create forecast box
             var curForecastBox = document.createElement('div');
@@ -178,13 +176,11 @@ function init () {
     weatherStorage = localStorage.getItem('weather-dash');
     //if we have stored content, load it
     if (weatherStorage) {
-        // console.log("weatherStorage is:", weatherStorage);
         weatherStorage = JSON.parse(weatherStorage);
         //display previous searches in sidebar ul
         var searchListElem = document.getElementById("prev-search");
         searchListElem.textContent = "";
         for (var i=1; i < weatherStorage.length; i++) {
-            // console.log("weatherStorage[i].current:", weatherStorage[i].current);
             var newSearchLi = document.createElement('li');
             var newSearchLink = document.createElement('a');
             newSearchLink.setAttribute("id", `search-${i}`);
