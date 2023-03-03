@@ -8,7 +8,7 @@ var forecastObj;
 var weatherStorage;
 
   function dispForecast () {
-    console.log("in dispForecast, city is:", forecastObj.city.name);
+    // console.log("in dispForecast, city is:", forecastObj.city.name);
 
     //access and clear current forecast element
     var forecastElem = document.getElementById("forecast-elem");
@@ -73,8 +73,6 @@ var weatherStorage;
 }
 
 function dispCurrentWeather () {
-    console.log("in dispCurrentWeather, city is:", weatherObj.name);
-
     //access and clear current-city element
     var curCityElem = document.getElementById("current-city");
     curCityElem.textContent = "";
@@ -113,8 +111,9 @@ function dispCurrentWeather () {
     curCityElem.append(curCityName, curIconElem, curUL);
 }
 
+//get weather object from API
 function getWeatherAPI (weatherType) {
-    console.log("queryType is:", weatherType);
+    //set fetch API variable string
     var queryURL = `https://api.openweathermap.org/data/2.5/${weatherType}?q=${cityName}&units=imperial&appid=${APIKey}`;
     fetch(queryURL)
     .then(function(response) {
@@ -122,33 +121,27 @@ function getWeatherAPI (weatherType) {
             throw response.json();
           }
         var respObj = response.json();
-        console.log("response is:", respObj);
         return respObj;
     })
     .then (function (data) {
-        
+        //if we're looking for current weather, display that first
         if (weatherType === "weather") {
             weatherObj = data;
             dispCurrentWeather();
-        } else {
+        } 
+        //if we're looking for a forecast, display that
+        else {
             forecastObj = data;
             dispForecast();
             //make sure this search doesn't appear twice in history
-            console.log ("new city is:", weatherObj.name);
             for (var i=0; i < weatherStorage.length; i++) {
-                console.log ("search hist item:", weatherStorage[i].current.name);
-                
                 if (weatherStorage[i].current.name === weatherObj.name) {
                     weatherStorage = weatherStorage.splice(i, 1);
                 }
             }
-    
             //add fetched weather objects to front of storage array
-            console.log("current:", weatherObj);
-            console.log("forecast:", forecastObj);
             var newWeatherObj = {"current": weatherObj, "forecast": forecastObj};
             weatherStorage.unshift(newWeatherObj);
-            console.log("weatherStorage:", weatherStorage);
             //put new array in localStorage
             localStorage.setItem("weather-dash", JSON.stringify(weatherStorage));
             //refresh search history
@@ -161,7 +154,7 @@ function getWeatherAPI (weatherType) {
     });
 }
 
-
+//capture search text and submits to API functions
 function handleSearchSubmit (event){
     event.preventDefault();
     init();
@@ -170,7 +163,7 @@ function handleSearchSubmit (event){
         console.log('Please enter a City Name');
         return;
     }
-    console.log("user submitted:", searchVal);
+    //set global current weather search
     cityName = searchVal.trim();
     //get current weather
     getWeatherAPI("weather")
@@ -179,6 +172,7 @@ function handleSearchSubmit (event){
     
 }
 
+//start loading the search history and last search
 function init () {
     //load previous fetch objects from localStorage
     weatherStorage = localStorage.getItem('weather-dash');
@@ -190,7 +184,7 @@ function init () {
         var searchListElem = document.getElementById("prev-search");
         searchListElem.textContent = "";
         for (var i=1; i < weatherStorage.length; i++) {
-            console.log("weatherStorage[i].current:", weatherStorage[i].current);
+            // console.log("weatherStorage[i].current:", weatherStorage[i].current);
             var newSearchLi = document.createElement('li');
             var newSearchLink = document.createElement('a');
             newSearchLink.setAttribute("id", `search-${i}`);
@@ -212,26 +206,31 @@ function init () {
 
 }
 
+//listen to search button
 searchElem.addEventListener('submit', handleSearchSubmit);
+
+//listen to clicks on search history
 historyElem.addEventListener('click', function (event) {
     var element = event.target;
-    console.log("id is:", element.id);
-    var elemIndex = parseInt((element.id).slice(7));
-    console.log("id in number form is:", elemIndex);
-   if (weatherStorage) {
-        let tmpName = weatherStorage[elemIndex].current.name;
-        console.log("user clicked:", tmpName);
-        //remove selected city from search history
-        weatherStorage.splice(elemIndex, 1);
-        //load weather for selected city
-        cityName = tmpName;
-        //get current weather
-        getWeatherAPI("weather")
-        //get forecast
-        getWeatherAPI("forecast");
-    }
+    //as long as we click on an element in our search history
+    if (element.id) {
+        //grab the index number from its id name
+        var elemIndex = parseInt((element.id).slice(7));
+        if (weatherStorage) {
+            let tmpName = weatherStorage[elemIndex].current.name;
+            //remove selected city from search history
+            
+            weatherStorage.splice(elemIndex, 1);
+            //load weather for selected city
+            cityName = tmpName;
+            //get current weather
+            getWeatherAPI("weather")
+            //get forecast
+            getWeatherAPI("forecast");
+        }
+    }  
         
-
 })
 
+//start-up
 init();
